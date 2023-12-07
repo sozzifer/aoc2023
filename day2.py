@@ -9,15 +9,40 @@ with open("inputs/day2.txt", "r") as f:
 
 test_ips = test_inputs_pt1.splitlines()
 
-games = [ip.split(": ")[1] for ip in ips]
-rounds = [game.split("; ") for game in games]
-hands = [[colour.split(", ") for colour in colours] for colours in rounds]
+# games = [ip.split(": ")[1] for ip in ips]
+# rounds = [game.split("; ") for game in games]
+hands = [
+    [colour.split(", ") for colour in colours]
+    for colours in [game.split("; ") for game in [ip.split(": ")[1] for ip in ips]]
+]
 
 for idx_game, game in enumerate(hands):
     for idx_round, round in enumerate(hands[idx_game]):
         for idx_colours, colours in enumerate(hands[idx_game][idx_round]):
-            for idx_colour, colour in enumerate(hands[idx_game][idx_round][idx_colours]):
-                pass
+            print(colours.split()[1])
+            # if all(
+            #     [
+            #         all(
+            #             [
+            #                 colours.split()[1] == "red",
+            #                 int(colours.split()[0]) <= BAG["red"],
+            #             ]
+            #         ),
+            #         all(
+            #             [
+            #                 colours.split()[1] == "blue",
+            #                 int(colours.split()[0]) <= BAG["blue"],
+            #             ]
+            #         ),
+            #         all(
+            #             [
+            #                 colours.split()[1] == "green",
+            #                 int(colours.split()[0]) <= BAG["green"],
+            #             ]
+            #         ),
+            #     ]
+            # ):
+
 # pp(ip_dict)
 # {
 #     1: "3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green",
